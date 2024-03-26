@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Czim\Paperclip\Contracts\AttachableInterface;

@@ -40,14 +40,14 @@ class Deal extends Model implements AttachableInterface
 
     public function getUrl()
     {
-        $url = url('deal/' . \App\Http\Controllers\Core\Secure::staticHash($this->id));
+        $url = url('deal/'.\App\Http\Controllers\Core\Secure::staticHash($this->id));
 
         return $url;
     }
 
     public function getFavicon()
     {
-        $favicon = 'favicons/deal-' . \App\Http\Controllers\Core\Secure::staticHash($this->id) . '.ico';
+        $favicon = 'favicons/deal-'.\App\Http\Controllers\Core\Secure::staticHash($this->id).'.ico';
         $favicon = (\File::exists(public_path($favicon))) ? url($favicon) : null;
 
         return $favicon;

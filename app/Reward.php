@@ -94,4 +94,3 @@ class Reward extends Model implements AttachableInterface
     //     // Replace with logic to get a relevant metric using appropriate analytics tools
     // }
 }
-

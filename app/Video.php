@@ -78,4 +78,3 @@ class Video extends Model implements AttachableInterface
 
     // You likely don't need metrics functionality for videos unless you're tracking views or other engagement metrics.
 }
-
