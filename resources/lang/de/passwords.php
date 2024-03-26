@@ -17,6 +17,6 @@ return [
     'reset' => 'Ihr Passwort wurde zurückgesetzt!',
     'sent' => 'Wir haben Ihnen den Link zum Zurücksetzen des Passworts per E-Mail gesendet!',
     'token' => 'Dieses Passwort-Reset-Token ist nicht gültig.',
-    'user' => "Wir können keinen Benutzer mit dieser E-Mail-Adresse finden.",
+    'user' => 'Wir können keinen Benutzer mit dieser E-Mail-Adresse finden.',
 
 ];

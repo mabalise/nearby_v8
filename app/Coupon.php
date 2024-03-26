@@ -41,14 +41,14 @@ class Coupon extends Model implements AttachableInterface
 
     public function getUrl()
     {
-        $url = url('coupon/' . \App\Http\Controllers\Core\Secure::staticHash($this->id));
+        $url = url('coupon/'.\App\Http\Controllers\Core\Secure::staticHash($this->id));
 
         return $url;
     }
 
     public function getFavicon()
     {
-        $favicon = 'favicons/coupon-' . \App\Http\Controllers\Core\Secure::staticHash($this->id) . '.ico';
+        $favicon = 'favicons/coupon-'.\App\Http\Controllers\Core\Secure::staticHash($this->id).'.ico';
         $favicon = (\File::exists(public_path($favicon))) ? url($favicon) : null;
 
         return $favicon;
@@ -97,4 +97,3 @@ class Coupon extends Model implements AttachableInterface
     //     // Example: return Analytics::getBounceRate(); // This might not be relevant for coupons
     // }
 }
-

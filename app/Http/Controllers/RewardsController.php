@@ -116,7 +116,7 @@ class RewardsController extends Controller
                 $reward->startMetrics(new \App\Metrics\RewardViewCountMetrics());
             }
             */
-            
+
             // Description that fits one line for html tags
             $description = \App\Http\Controllers\Core\Helpers::parseDescription($reward->details);
 

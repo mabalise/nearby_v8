@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Czim\Paperclip\Contracts\AttachableInterface;
@@ -83,4 +84,3 @@ class BusinessCard extends Model implements AttachableInterface
 
     // You likely don't need metrics functionality for business cards.
 }
-
