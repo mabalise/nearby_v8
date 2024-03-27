@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
 use Closure;
 
 class CheckInstallation
@@ -13,7 +15,7 @@ class CheckInstallation
      * @param  string  $role
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
         if (\Request::segment(1) != 'install') {
             if (! \App\Http\Controllers\InstallationController::isInstalled()) {

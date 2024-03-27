@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Model;
 
 class PropertySurrounding extends Model
@@ -22,7 +23,7 @@ class PropertySurrounding extends Model
      */
     public $timestamps = false;
 
-    public function properties()
+    public function properties(): BelongsToMany
     {
         return $this->belongsToMany(\App\Property::class, 'property_surrounding', 'property_id', 'property_surrounding_id');
     }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -71,12 +73,12 @@ class Coupon extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
 
-    public function couponLeads()
+    public function couponLeads(): HasMany
     {
         return $this->hasMany(\App\CouponLead::class);
     }

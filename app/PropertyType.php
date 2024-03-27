@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class PropertyType extends Model
@@ -15,7 +16,7 @@ class PropertyType extends Model
      */
     public $timestamps = false;
 
-    public function properties()
+    public function properties(): HasMany
     {
         return $this->hasMany('Modules\Properties\Http\Models\Property');
     }

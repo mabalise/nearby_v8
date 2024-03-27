@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class CouponLead extends Model
@@ -31,7 +32,7 @@ class CouponLead extends Model
         'meta' => 'json',
     ];
 
-    public function coupon()
+    public function coupon(): BelongsTo
     {
         return $this->belongsTo(\App\Coupon::class);
     }

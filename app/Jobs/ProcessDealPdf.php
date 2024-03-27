@@ -30,7 +30,7 @@ class ProcessDealPdf implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $deal = $this->deal;
         $path = storage_path('app/deals/pdf/');

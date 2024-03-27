@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class DealStat extends Model
@@ -25,12 +27,12 @@ class DealStat extends Model
         return ['created_at'];
     }
 
-    public function deal()
+    public function deal(): HasOne
     {
         return $this->hasOne(\App\Deal::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }

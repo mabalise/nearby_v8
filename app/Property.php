@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -61,32 +63,32 @@ class Property extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
 
-    public function property_type()
+    public function property_type(): BelongsTo
     {
         return $this->belongsTo(\App\PropertyType::class);
     }
 
-    public function sales_type()
+    public function sales_type(): BelongsTo
     {
         return $this->belongsTo('\App\SalesType');
     }
 
-    public function features()
+    public function features(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertyFeature::class, 'property_feature', 'property_id', 'property_feature_id');
     }
 
-    public function surrounding()
+    public function surrounding(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertySurrounding::class, 'property_surrounding', 'property_id', 'property_surrounding_id');
     }
 
-    public function garages()
+    public function garages(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertyGarage::class, 'property_garage', 'property_id', 'property_garage_id');
     }

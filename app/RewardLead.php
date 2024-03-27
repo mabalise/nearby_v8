@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 
 class RewardLead extends Model
@@ -30,7 +31,7 @@ class RewardLead extends Model
         'meta' => 'json',
     ];
 
-    public function reward()
+    public function reward(): BelongsTo
     {
         return $this->belongsTo(\App\Reward::class);
     }
