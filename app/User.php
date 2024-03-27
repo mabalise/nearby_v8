@@ -46,8 +46,6 @@ class User extends Authenticatable implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
     public function getAttributes(): array
     {

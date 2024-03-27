@@ -11,9 +11,7 @@ class CheckRole
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $role
-     * @return mixed
      */
     public function handle(Request $request, Closure $next, $role1, $role2 = 'NULL', $role3 = 'NULL', $role4 = 'NULL', $role5 = 'NULL'): Response
     {

@@ -11,9 +11,7 @@ class CheckInstallation
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $role
-     * @return mixed
      */
     public function handle(Request $request, Closure $next): Response
     {
