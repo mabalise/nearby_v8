@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessCardsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -70,4 +70,4 @@ class CreateBusinessCardsTable extends Migration
     {
         Schema::dropIfExists('business_cards');
     }
-}
+};
