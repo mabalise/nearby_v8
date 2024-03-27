@@ -6,7 +6,6 @@ use App\Jobs\ProcessDealPdf;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Http\Request;
 
-
 class DealsController extends Controller
 {
     /*

@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Czim\Paperclip\Contracts\AttachableInterface;
@@ -106,6 +107,5 @@ class Property extends Model implements AttachableInterface
 
     // Removed functions from gurmanalexander/laravel-metrics
 
-    // You likely don't need metrics functionality for properties. 
+    // You likely don't need metrics functionality for properties.
 }
-

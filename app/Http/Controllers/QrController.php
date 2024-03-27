@@ -176,7 +176,7 @@ class QrController extends Controller
             $qr_code->redirect_to_url = $url;
             $qr_code->title = $info->title;
             $qr_code->description = $info->description;
-            $image = $info->image ;
+            $image = $info->image;
             $qr_code->image = strval($image);
             $qr_code->icon = $info->icon;
 

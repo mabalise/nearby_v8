@@ -81,4 +81,3 @@ class Page extends Model implements AttachableInterface
 
     // You likely don't need metrics functionality for pages unless you're tracking visits or other engagement metrics.
 }
-
