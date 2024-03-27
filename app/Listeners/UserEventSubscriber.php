@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use Illuminate\Events\Dispatcher;
 use App\Http\Controllers\Core;
 use Carbon\Carbon;
 
@@ -62,7 +63,7 @@ class UserEventSubscriber
      *
      * @param  Illuminate\Events\Dispatcher  $events
      */
-    public function subscribe($events)
+    public function subscribe(Dispatcher $events)
     {
         $events->listen('Illuminate\Auth\Events\Login', 'App\Listeners\UserEventSubscriber@onUserLogin');
         $events->listen('Illuminate\Auth\Events\Logout', 'App\Listeners\UserEventSubscriber@onUserLogout');

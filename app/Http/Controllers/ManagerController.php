@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ManagerController extends Controller
@@ -20,7 +23,7 @@ class ManagerController extends Controller
     /**
      * Users
      */
-    public function showUsers()
+    public function showUsers(): View
     {
 
         $sortby = request()->get('sortby', 'last_login');
@@ -64,7 +67,7 @@ class ManagerController extends Controller
     /**
      * Edit user
      */
-    public function showEditUser($sl)
+    public function showEditUser($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -76,7 +79,7 @@ class ManagerController extends Controller
     /**
      * Post new or update user
      */
-    public function postUser()
+    public function postUser(): RedirectResponse
     {
         $sl = request()->get('sl', null);
 
@@ -168,7 +171,7 @@ class ManagerController extends Controller
     /**
      * Login as user
      */
-    public function loginAsUser($sl)
+    public function loginAsUser($sl): RedirectResponse
     {
         if ($sl != '') {
             $qs = Core\Secure::string2array($sl);
@@ -193,7 +196,7 @@ class ManagerController extends Controller
     /**
      * Delete user
      */
-    public function postDeleteUser(Request $request)
+    public function postDeleteUser(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

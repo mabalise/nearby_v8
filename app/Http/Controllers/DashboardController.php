@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class DashboardController extends Controller
 {
     /*
@@ -18,7 +20,7 @@ class DashboardController extends Controller
     /**
      * Dashboard
      */
-    public function dashboard()
+    public function dashboard(): View
     {
         return view('app.dashboard');
     }

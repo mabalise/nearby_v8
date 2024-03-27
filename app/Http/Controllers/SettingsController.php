@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -21,7 +23,7 @@ class SettingsController extends Controller
     /**
      * Settings
      */
-    public function showSettings()
+    public function showSettings(): View
     {
         return view('app.settings.overview');
     }
@@ -29,7 +31,7 @@ class SettingsController extends Controller
     /**
      * Profile
      */
-    public function showSettingsProfile()
+    public function showSettingsProfile(): View
     {
         $now = \Carbon\Carbon::now()->tz('UTC');
         $expires = auth()->user()->expires;
@@ -50,7 +52,7 @@ class SettingsController extends Controller
     /**
      * Profile update
      */
-    public function postSettingsProfile(Request $request)
+    public function postSettingsProfile(Request $request): RedirectResponse
     {
         if (env('APP_DEMO', false)) {
             return redirect()->back()->withErrors(['The system is in demo mode, you can\'t update the administrator profile']);
@@ -95,7 +97,7 @@ class SettingsController extends Controller
     /**
      * Analytics
      */
-    public function showSettingsAnalytics()
+    public function showSettingsAnalytics(): View
     {
 
         $user = auth()->user();
@@ -109,7 +111,7 @@ class SettingsController extends Controller
     /**
      * Analytics update
      */
-    public function postSettingsAnalytics(Request $request)
+    public function postSettingsAnalytics(Request $request): RedirectResponse
     {
         if (env('APP_DEMO', false)) {
             return redirect()->back()->withErrors(['The system is in demo mode']);

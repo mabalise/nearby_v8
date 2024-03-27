@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Http\Request;
 
@@ -99,7 +102,7 @@ class RewardsController extends Controller
     /**
      * View reward
      */
-    public function viewReward($reward_hash)
+    public function viewReward($reward_hash): View
     {
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
         $reward = \App\Reward::where('id', $reward_id)->first();
@@ -251,7 +254,7 @@ class RewardsController extends Controller
     /**
      * Redeem reward QR
      */
-    public function postRedeemReward($reward_hash)
+    public function postRedeemReward($reward_hash): View
     {
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
         $reward = \App\Reward::where('id', $reward_id)->first();
@@ -280,7 +283,7 @@ class RewardsController extends Controller
     /**
      * Verify redeemed reward
      */
-    public function verifyReward($reward_hash)
+    public function verifyReward($reward_hash): View
     {
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
         $reward = \App\Reward::where('id', $reward_id)->first();
@@ -389,7 +392,7 @@ class RewardsController extends Controller
     /**
      * Show reward redeemed
      */
-    public function rewardRedeemed($reward_hash)
+    public function rewardRedeemed($reward_hash): View
     {
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
         $reward = \App\Reward::where('id', $reward_id)->first();
@@ -416,7 +419,7 @@ class RewardsController extends Controller
     /**
      * Verify check in
      */
-    public function checkInReward($reward_hash)
+    public function checkInReward($reward_hash): View
     {
 
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
@@ -526,7 +529,7 @@ class RewardsController extends Controller
     /**
      * Reward checked in user view
      */
-    public function checkedInReward($reward_hash)
+    public function checkedInReward($reward_hash): View
     {
         $reward_id = \App\Http\Controllers\Core\Secure::staticHashDecode($reward_hash);
         $reward = \App\Reward::where('id', $reward_id)->first();
@@ -594,7 +597,7 @@ class RewardsController extends Controller
     /**
      * Leads
      */
-    public function showLeads()
+    public function showLeads(): View
     {
         $allowed_sort = ['created_at'];
         $fields = \App\Http\Controllers\RewardsController::requiredFieldList();
@@ -686,7 +689,7 @@ class RewardsController extends Controller
     /**
      * Delete lead
      */
-    public function postDeleteLead(Request $request)
+    public function postDeleteLead(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');
@@ -704,7 +707,7 @@ class RewardsController extends Controller
     /**
      * Delete leads
      */
-    public function postDeleteLeads(Request $request)
+    public function postDeleteLeads(Request $request): JsonResponse
     {
 
         $rows = $request->input('rows', []);
@@ -775,7 +778,7 @@ class RewardsController extends Controller
     /**
      * Edit reward
      */
-    public function showEditReward($sl)
+    public function showEditReward($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -814,7 +817,7 @@ class RewardsController extends Controller
     /**
      * Post new or update reward
      */
-    public function postReward()
+    public function postReward(): RedirectResponse
     {
         $input = [
             'image' => request()->file('image'),
@@ -925,7 +928,7 @@ class RewardsController extends Controller
     /**
      * Delete reward
      */
-    public function postDeleteReward(Request $request)
+    public function postDeleteReward(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

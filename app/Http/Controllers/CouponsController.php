@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Http\Request;
 
@@ -79,7 +82,7 @@ class CouponsController extends Controller
     /**
      * View coupon
      */
-    public function viewCoupon($coupon_hash)
+    public function viewCoupon($coupon_hash): View
     {
         $coupon_id = \App\Http\Controllers\Core\Secure::staticHashDecode($coupon_hash);
         $coupon = \App\Coupon::where('id', $coupon_id)->first();
@@ -151,7 +154,7 @@ class CouponsController extends Controller
     /**
      * Show coupon redeemed
      */
-    public function couponRedeemed($coupon_hash)
+    public function couponRedeemed($coupon_hash): View
     {
         $coupon_id = \App\Http\Controllers\Core\Secure::staticHashDecode($coupon_hash);
         $coupon = \App\Coupon::where('id', $coupon_id)->first();
@@ -175,7 +178,7 @@ class CouponsController extends Controller
     /**
      * Redeem coupon
      */
-    public function postRedeemCoupon($coupon_hash)
+    public function postRedeemCoupon($coupon_hash): View
     {
         $coupon_id = \App\Http\Controllers\Core\Secure::staticHashDecode($coupon_hash);
         $coupon = \App\Coupon::where('id', $coupon_id)->first();
@@ -204,7 +207,7 @@ class CouponsController extends Controller
     /**
      * Verify redeemed coupon
      */
-    public function verifyCoupon($coupon_hash)
+    public function verifyCoupon($coupon_hash): View
     {
         $coupon_id = \App\Http\Controllers\Core\Secure::staticHashDecode($coupon_hash);
         $coupon = \App\Coupon::where('id', $coupon_id)->first();
@@ -373,7 +376,7 @@ class CouponsController extends Controller
     /**
      * Leads
      */
-    public function showLeads()
+    public function showLeads(): View
     {
         $allowed_sort = ['created_at'];
         $fields = \App\Http\Controllers\CouponsController::requiredFieldList();
@@ -465,7 +468,7 @@ class CouponsController extends Controller
     /**
      * Delete lead
      */
-    public function postDeleteLead(Request $request)
+    public function postDeleteLead(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');
@@ -483,7 +486,7 @@ class CouponsController extends Controller
     /**
      * Delete leads
      */
-    public function postDeleteLeads(Request $request)
+    public function postDeleteLeads(Request $request): JsonResponse
     {
 
         $rows = $request->input('rows', []);
@@ -534,7 +537,7 @@ class CouponsController extends Controller
     /**
      * Edit coupon
      */
-    public function showEditCoupon($sl)
+    public function showEditCoupon($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -573,7 +576,7 @@ class CouponsController extends Controller
     /**
      * Post new or update coupon
      */
-    public function postCoupon()
+    public function postCoupon(): RedirectResponse
     {
         $input = [
             'image' => request()->file('image'),
@@ -682,7 +685,7 @@ class CouponsController extends Controller
     /**
      * Delete coupon
      */
-    public function postDeleteCoupon(Request $request)
+    public function postDeleteCoupon(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

@@ -49,7 +49,7 @@ class User extends Authenticatable implements AttachableInterface
      *
      * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }

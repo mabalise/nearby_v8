@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 use DeviceDetector\DeviceDetector;
 use Illuminate\Http\Request;
 
@@ -21,7 +24,7 @@ class PagesController extends Controller
     /**
      * View page
      */
-    public function viewPage($page_hash)
+    public function viewPage($page_hash): View
     {
         $page_id = \App\Http\Controllers\Core\Secure::staticHashDecode($page_hash);
         $page = \App\Page::where('id', $page_id)->first();
@@ -124,7 +127,7 @@ class PagesController extends Controller
     /**
      * Edit page
      */
-    public function showEditPage($sl)
+    public function showEditPage($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -143,7 +146,7 @@ class PagesController extends Controller
     /**
      * Post new or update page
      */
-    public function postPage()
+    public function postPage(): RedirectResponse
     {
         $input = [
             'image' => request()->file('image'),
@@ -221,7 +224,7 @@ class PagesController extends Controller
     /**
      * Delete page
      */
-    public function postDeletePage(Request $request)
+    public function postDeletePage(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

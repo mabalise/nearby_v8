@@ -34,7 +34,7 @@ class Deal extends Model implements AttachableInterface
      *
      * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
