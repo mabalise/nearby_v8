@@ -12,5 +12,5 @@ yarn-error.log
 .env
 *.env
 *.bu.php
-.phpunit.result.cache
+/.phpunit.cache
 _notes
