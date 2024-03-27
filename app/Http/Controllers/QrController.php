@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use DeviceDetector\DeviceDetector;
 use Embed\Embed;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 
 class QrController extends Controller
 {
@@ -23,7 +26,7 @@ class QrController extends Controller
     /**
      * View qr_code
      */
-    public function viewQrCode($qr_code_hash)
+    public function viewQrCode($qr_code_hash): RedirectResponse
     {
         $qr_code_id = \App\Http\Controllers\Core\Secure::staticHashDecode($qr_code_hash);
         $qr_code = \App\Qr::where('id', $qr_code_id)->first();
@@ -112,7 +115,7 @@ class QrController extends Controller
     /**
      * Edit qr_code
      */
-    public function showEditQrCode($sl)
+    public function showEditQrCode($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -132,7 +135,7 @@ class QrController extends Controller
     /**
      * Post new or update qr_code
      */
-    public function postQrCode()
+    public function postQrCode(): RedirectResponse
     {
         $input = [
             'redirect_to_url' => request()->get('redirect_to_url'),
@@ -176,7 +179,7 @@ class QrController extends Controller
             $qr_code->redirect_to_url = $url;
             $qr_code->title = $info->title;
             $qr_code->description = $info->description;
-            $image = $info->image ;
+            $image = $info->image;
             $qr_code->image = strval($image);
             $qr_code->icon = $info->icon;
 
@@ -204,7 +207,7 @@ class QrController extends Controller
     /**
      * Delete qr_code
      */
-    public function postDeleteQrCode(Request $request)
+    public function postDeleteQrCode(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

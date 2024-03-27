@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use DeviceDetector\DeviceDetector;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use WkPdf;
 
 class PropertiesController extends Controller
@@ -70,7 +74,7 @@ class PropertiesController extends Controller
     /**
      * View property
      */
-    public function viewProperty($property_hash)
+    public function viewProperty($property_hash): View
     {
         $property_id = \App\Http\Controllers\Core\Secure::staticHashDecode($property_hash);
         $property = \App\Property::where('id', $property_id)->first();
@@ -171,7 +175,7 @@ class PropertiesController extends Controller
     /**
      * Download property as PDF
      */
-    public function downloadPdf($property_hash)
+    public function downloadPdf($property_hash): BinaryFileResponse
     {
         $property_id = \App\Http\Controllers\Core\Secure::staticHashDecode($property_hash);
 
@@ -354,7 +358,7 @@ class PropertiesController extends Controller
     /**
      * Post new or update property
      */
-    public function postProperty()
+    public function postProperty(): RedirectResponse
     {
         $input = [
             'title' => request()->get('title'),
@@ -503,7 +507,7 @@ class PropertiesController extends Controller
     /**
      * Delete property
      */
-    public function postDeleteProperty(Request $request)
+    public function postDeleteProperty(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

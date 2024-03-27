@@ -4,6 +4,8 @@ namespace App;
 
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -44,10 +46,8 @@ class User extends Authenticatable implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
@@ -65,12 +65,12 @@ class User extends Authenticatable implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function parentUser()
+    public function parentUser(): BelongsTo
     {
         return $this->belongsTo(\App\User::class, 'parent_id');
     }
 
-    public function childUsers()
+    public function childUsers(): HasMany
     {
         return $this->hasMany(\App\User::class, 'parent_id');
     }
@@ -85,42 +85,42 @@ class User extends Authenticatable implements AttachableInterface
         return ($this->role == null) ? 'user' : $this->role;
     }
 
-    public function deals()
+    public function deals(): HasMany
     {
         return $this->hasMany(\App\Deal::class);
     }
 
-    public function properties()
+    public function properties(): HasMany
     {
         return $this->hasMany(\App\Property::class);
     }
 
-    public function businessCards()
+    public function businessCards(): HasMany
     {
         return $this->hasMany(\App\BusinessCard::class);
     }
 
-    public function pages()
+    public function pages(): HasMany
     {
         return $this->hasMany(\App\Page::class);
     }
 
-    public function coupons()
+    public function coupons(): HasMany
     {
         return $this->hasMany(\App\Coupon::class);
     }
 
-    public function rewards()
+    public function rewards(): HasMany
     {
         return $this->hasMany(\App\Reward::class);
     }
 
-    public function videos()
+    public function videos(): HasMany
     {
         return $this->hasMany(\App\Video::class);
     }
 
-    public function qr_codes()
+    public function qr_codes(): HasMany
     {
         return $this->hasMany(\App\Qr::class);
     }

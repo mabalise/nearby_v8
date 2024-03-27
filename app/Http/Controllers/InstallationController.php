@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Encryption\Encrypter;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class InstallationController extends Controller
 {
@@ -32,7 +34,7 @@ class InstallationController extends Controller
     /**
      * Installation view
      */
-    public function getInstall()
+    public function getInstall(): View
     {
         return view('installation.install');
     }
@@ -40,7 +42,7 @@ class InstallationController extends Controller
     /**
      * Post installation
      */
-    public function postInstall(Request $request)
+    public function postInstall(Request $request): RedirectResponse
     {
         $email = $request->input('email', '');
         $pass = $request->input('pass', '');

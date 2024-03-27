@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class HelpController extends Controller
 {
     /*
@@ -36,7 +38,7 @@ class HelpController extends Controller
     /**
      * Nearby Platform help pages
      */
-    public function nearbyPlatformHelpPage($page)
+    public function nearbyPlatformHelpPage($page): View
     {
         $product = 'Nearby Platform';
         $doctype = 'Help';

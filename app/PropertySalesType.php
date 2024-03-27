@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SalesType extends Model
 {
@@ -15,7 +16,7 @@ class SalesType extends Model
      */
     public $timestamps = false;
 
-    public function properties()
+    public function properties(): HasMany
     {
         return $this->hasMany(\App\Property::class);
     }

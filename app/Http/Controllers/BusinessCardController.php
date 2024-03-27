@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use DeviceDetector\DeviceDetector;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use JeroenDesloovere\VCard\VCard;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class BusinessCardController extends Controller
 {
@@ -78,7 +82,7 @@ class BusinessCardController extends Controller
     /**
      * View card
      */
-    public function viewCard($card_hash)
+    public function viewCard($card_hash): View
     {
         $card_id = \App\Http\Controllers\Core\Secure::staticHashDecode($card_hash);
         $card = \App\BusinessCard::where('id', $card_id)->first();
@@ -162,7 +166,7 @@ class BusinessCardController extends Controller
     /**
      * Download card as VCard
      */
-    public function downloadVCard($card_hash)
+    public function downloadVCard($card_hash): BinaryFileResponse
     {
         $card_id = \App\Http\Controllers\Core\Secure::staticHashDecode($card_hash);
 
@@ -291,7 +295,7 @@ class BusinessCardController extends Controller
     /**
      * Edit card
      */
-    public function showEditCard($sl)
+    public function showEditCard($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -312,7 +316,7 @@ class BusinessCardController extends Controller
     /**
      * Post new or update card
      */
-    public function postCard()
+    public function postCard(): RedirectResponse
     {
         $input = [
             'image' => request()->file('image'),
@@ -405,7 +409,7 @@ class BusinessCardController extends Controller
     /**
      * Delete card
      */
-    public function postDeleteCard(Request $request)
+    public function postDeleteCard(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

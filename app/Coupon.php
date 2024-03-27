@@ -5,6 +5,8 @@ namespace App;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Coupon extends Model implements AttachableInterface
 {
@@ -31,24 +33,22 @@ class Coupon extends Model implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
 
     public function getUrl()
     {
-        $url = url('coupon/' . \App\Http\Controllers\Core\Secure::staticHash($this->id));
+        $url = url('coupon/'.\App\Http\Controllers\Core\Secure::staticHash($this->id));
 
         return $url;
     }
 
     public function getFavicon()
     {
-        $favicon = 'favicons/coupon-' . \App\Http\Controllers\Core\Secure::staticHash($this->id) . '.ico';
+        $favicon = 'favicons/coupon-'.\App\Http\Controllers\Core\Secure::staticHash($this->id).'.ico';
         $favicon = (\File::exists(public_path($favicon))) ? url($favicon) : null;
 
         return $favicon;
@@ -71,12 +71,12 @@ class Coupon extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
 
-    public function couponLeads()
+    public function couponLeads(): HasMany
     {
         return $this->hasMany(\App\CouponLead::class);
     }
@@ -97,4 +97,3 @@ class Coupon extends Model implements AttachableInterface
     //     // Example: return Analytics::getBounceRate(); // This might not be relevant for coupons
     // }
 }
-

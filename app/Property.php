@@ -1,9 +1,12 @@
 <?php
+
 namespace App;
 
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Property extends Model implements AttachableInterface
 {
@@ -20,10 +23,8 @@ class Property extends Model implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
@@ -60,32 +61,32 @@ class Property extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
 
-    public function property_type()
+    public function property_type(): BelongsTo
     {
         return $this->belongsTo(\App\PropertyType::class);
     }
 
-    public function sales_type()
+    public function sales_type(): BelongsTo
     {
         return $this->belongsTo('\App\SalesType');
     }
 
-    public function features()
+    public function features(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertyFeature::class, 'property_feature', 'property_id', 'property_feature_id');
     }
 
-    public function surrounding()
+    public function surrounding(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertySurrounding::class, 'property_surrounding', 'property_id', 'property_surrounding_id');
     }
 
-    public function garages()
+    public function garages(): BelongsToMany
     {
         return $this->belongsToMany(\App\PropertyGarage::class, 'property_garage', 'property_id', 'property_garage_id');
     }
@@ -106,6 +107,5 @@ class Property extends Model implements AttachableInterface
 
     // Removed functions from gurmanalexander/laravel-metrics
 
-    // You likely don't need metrics functionality for properties. 
+    // You likely don't need metrics functionality for properties.
 }
-

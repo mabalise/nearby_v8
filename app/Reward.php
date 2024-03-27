@@ -5,6 +5,8 @@ namespace App;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Reward extends Model implements AttachableInterface
 {
@@ -30,10 +32,8 @@ class Reward extends Model implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
@@ -70,12 +70,12 @@ class Reward extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
 
-    public function rewardLeads()
+    public function rewardLeads(): HasMany
     {
         return $this->hasMany(\App\RewardLead::class);
     }
@@ -94,4 +94,3 @@ class Reward extends Model implements AttachableInterface
     //     // Replace with logic to get a relevant metric using appropriate analytics tools
     // }
 }
-

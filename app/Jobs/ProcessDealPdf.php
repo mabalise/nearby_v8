@@ -27,10 +27,8 @@ class ProcessDealPdf implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $deal = $this->deal;
         $path = storage_path('app/deals/pdf/');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class WebsiteController extends Controller
 {
@@ -20,7 +21,7 @@ class WebsiteController extends Controller
     /**
      * Home
      */
-    public function home($locale = 'en')
+    public function home($locale = 'en'): View
     {
         app()->setLocale($locale);
 
@@ -30,7 +31,7 @@ class WebsiteController extends Controller
     /**
      * Dashboard
      */
-    public function dashboard()
+    public function dashboard(): View
     {
         return view('auth.dashboard', compact('header_img', 'color_dark', 'color_light'));
     }
@@ -38,7 +39,7 @@ class WebsiteController extends Controller
     /**
      * Contact
      */
-    public function contact()
+    public function contact(): View
     {
         return view('contact', compact('header_img', 'color_dark', 'color_light'));
     }
@@ -74,7 +75,7 @@ class WebsiteController extends Controller
     /**
      * Use cases
      */
-    public function useCases()
+    public function useCases(): View
     {
         $header_img = url('assets/images/backgrounds/triangles05.jpg');
         $color_dark = 'rgba(245,249,250,0.9)';
@@ -86,7 +87,7 @@ class WebsiteController extends Controller
     /**
      * FAQ
      */
-    public function faq()
+    public function faq(): View
     {
         $header_img = url('assets/images/backgrounds/triangles05.jpg');
         $color_dark = 'rgba(245,249,250,0.9)';
@@ -98,7 +99,7 @@ class WebsiteController extends Controller
     /**
      * Legal
      */
-    public function legal()
+    public function legal(): View
     {
         $header_img = url('assets/images/backgrounds/triangles05.jpg');
         $color_dark = 'rgba(245,249,250,0.9)';
@@ -110,7 +111,7 @@ class WebsiteController extends Controller
     /**
      * Privacy Policy
      */
-    public function privacyPolicy()
+    public function privacyPolicy(): View
     {
         $header_img = url('assets/images/backgrounds/triangles05.jpg');
         $color_dark = 'rgba(245,249,250,0.9)';

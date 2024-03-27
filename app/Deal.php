@@ -5,6 +5,7 @@ namespace App;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Analytics\Analytics; // Assuming this is the library used for analytics
 
 class Deal extends Model implements AttachableInterface
@@ -30,24 +31,22 @@ class Deal extends Model implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
 
     public function getUrl()
     {
-        $url = url('deal/' . \App\Http\Controllers\Core\Secure::staticHash($this->id));
+        $url = url('deal/'.\App\Http\Controllers\Core\Secure::staticHash($this->id));
 
         return $url;
     }
 
     public function getFavicon()
     {
-        $favicon = 'favicons/deal-' . \App\Http\Controllers\Core\Secure::staticHash($this->id) . '.ico';
+        $favicon = 'favicons/deal-'.\App\Http\Controllers\Core\Secure::staticHash($this->id).'.ico';
         $favicon = (\File::exists(public_path($favicon))) ? url($favicon) : null;
 
         return $favicon;
@@ -70,7 +69,7 @@ class Deal extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }

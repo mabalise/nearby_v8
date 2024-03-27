@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\View\View;
+
 class PlansController extends Controller
 {
     /*
@@ -18,7 +20,7 @@ class PlansController extends Controller
     /**
      * Upgrade
      */
-    public function showPlans()
+    public function showPlans(): View
     {
         $current_plan = auth()->user()->plan;
 

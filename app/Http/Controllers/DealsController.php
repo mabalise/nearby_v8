@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ProcessDealPdf;
 use DeviceDetector\DeviceDetector;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
+use Illuminate\View\View;
 
 class DealsController extends Controller
 {
@@ -71,7 +73,7 @@ class DealsController extends Controller
     /**
      * View deal
      */
-    public function viewDeal($deal_hash)
+    public function viewDeal($deal_hash): View
     {
         $deal_id = \App\Http\Controllers\Core\Secure::staticHashDecode($deal_hash);
         $deal = \App\Deal::where('id', $deal_id)->first();
@@ -316,7 +318,7 @@ class DealsController extends Controller
     /**
      * Post new or update deal
      */
-    public function postDeal()
+    public function postDeal(): RedirectResponse
     {
         $input = [
             'title' => request()->get('title'),
@@ -445,7 +447,7 @@ class DealsController extends Controller
     /**
      * Delete deal
      */
-    public function postDeleteDeal(Request $request)
+    public function postDeleteDeal(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

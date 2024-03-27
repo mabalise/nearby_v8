@@ -3,20 +3,11 @@
 namespace App\Exceptions;
 
 use Exception;
-use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
-    /**
-     * A list of the exception types that are not reported.
-     *
-     * @var array
-     */
-    protected $dontReport = [
-        //
-    ];
-
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
@@ -34,7 +25,6 @@ class Handler extends ExceptionHandler
      * @return void
      */
     public function report(Throwable $e)
-
     {
         parent::report($e);
     }

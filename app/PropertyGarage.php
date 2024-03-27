@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PropertyGarage extends Model
 {
@@ -22,7 +23,7 @@ class PropertyGarage extends Model
      */
     public $timestamps = false;
 
-    public function properties()
+    public function properties(): BelongsToMany
     {
         return $this->belongsToMany(\App\Property::class, 'property_surrounding', 'property_id', 'property_surrounding_id');
     }

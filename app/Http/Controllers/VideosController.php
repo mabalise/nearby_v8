@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use DeviceDetector\DeviceDetector;
 use Embed\Embed;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class VideosController extends Controller
 {
@@ -22,7 +25,7 @@ class VideosController extends Controller
     /**
      * View video
      */
-    public function viewVideo($video_hash)
+    public function viewVideo($video_hash): View
     {
         $video_id = \App\Http\Controllers\Core\Secure::staticHashDecode($video_hash);
         $video = \App\Video::where('id', $video_id)->first();
@@ -131,7 +134,7 @@ class VideosController extends Controller
     /**
      * Edit video
      */
-    public function showEditVideo($sl)
+    public function showEditVideo($sl): View
     {
         $qs = Core\Secure::string2array($sl);
 
@@ -150,7 +153,7 @@ class VideosController extends Controller
     /**
      * Verify embedable url
      */
-    public function postVerifyUrl()
+    public function postVerifyUrl(): JsonResponse
     {
         $valid = false;
         $msg = '';
@@ -188,7 +191,7 @@ class VideosController extends Controller
     /**
      * Post new or update video
      */
-    public function postVideo()
+    public function postVideo(): RedirectResponse
     {
         $input = [
             'icon' => request()->file('icon'),
@@ -266,7 +269,7 @@ class VideosController extends Controller
     /**
      * Delete video
      */
-    public function postDeleteVideo(Request $request)
+    public function postDeleteVideo(Request $request): JsonResponse
     {
 
         $sl = $request->input('sl', '');

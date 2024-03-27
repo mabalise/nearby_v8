@@ -5,6 +5,7 @@ namespace App;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Page extends Model implements AttachableInterface
 {
@@ -26,10 +27,8 @@ class Page extends Model implements AttachableInterface
      * Fix for Stapler: https://github.com/CodeSleeve/laravel-stapler/issues/64
      *
      * Get all of the current attributes on the model.
-     *
-     * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
         return parent::getAttributes();
     }
@@ -72,7 +71,7 @@ class Page extends Model implements AttachableInterface
         parent::__construct($attributes);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(\App\User::class);
     }
@@ -81,4 +80,3 @@ class Page extends Model implements AttachableInterface
 
     // You likely don't need metrics functionality for pages unless you're tracking visits or other engagement metrics.
 }
-
