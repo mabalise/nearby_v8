@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\JsonResponse;
 use DeviceDetector\DeviceDetector;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use JeroenDesloovere\VCard\VCard;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class BusinessCardController extends Controller
 {

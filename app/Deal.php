@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Czim\Paperclip\Contracts\AttachableInterface;
 use Czim\Paperclip\Model\PaperclipTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Analytics\Analytics; // Assuming this is the library used for analytics
 
 class Deal extends Model implements AttachableInterface

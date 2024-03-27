@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use Illuminate\Events\Dispatcher;
 use App\Http\Controllers\Core;
 use Carbon\Carbon;
+use Illuminate\Events\Dispatcher;
 
 class UserEventSubscriber
 {
